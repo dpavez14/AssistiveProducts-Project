@@ -1,0 +1,23 @@
+@import '~@angular/material/theming';
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.item-active, .item-active:hover {
+  background-color: map_get($mat-blue, 100)
+}

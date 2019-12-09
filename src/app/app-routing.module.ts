@@ -1,11 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { CommentsComponent } from './components/comments/comments.component';
+import { ResultsComponent } from './components/results/results.component';
+import { PositionsComponent } from './components/positions/positions.component';
+import {FixturesComponent} from './components/fixtures/fixtures.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'fixtures', component: FixturesComponent },
+  { path: 'results', component: ResultsComponent },
+  { path: 'positions', component: PositionsComponent },
+  { path: 'comments/:id', component: CommentsComponent },
+  { path: '', redirectTo: '/schedule', pathMatch: 'full' },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  declarations: []
 })
 export class AppRoutingModule { }
