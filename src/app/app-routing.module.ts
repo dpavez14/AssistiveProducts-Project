@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'results', component: ResultsComponent },
   { path: 'positions', component: PositionsComponent },
   { path: 'comments/:id', component: CommentsComponent },
-  { path: '', redirectTo: '/schedule', pathMatch: 'full' },
+  { path: '', redirectTo: '/fixtures', pathMatch: 'full' },
 ];
 
 @NgModule({
