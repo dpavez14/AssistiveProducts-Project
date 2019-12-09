@@ -11,21 +11,95 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$accessible-web-primary: mat-palette($mat-blue, 800, 700, 900);
-$accessible-web-accent: mat-palette($mat-blue-grey, 800, 700, 900);
+$palette-primary: (
+  50 : #e4e6eb,
+  100 : #bbc0ce,
+  200 : #8e96ad,
+  300 : #606c8c,
+  400 : #3e4d73,
+  500 : #1c2d5a,
+  600 : #192852,
+  700 : #142248,
+  800 : #111c3f,
+  900 : #09112e,
+  A100 : #697fff,
+  A200 : #3653ff,
+  A400 : #0327ff,
+  A700 : #0021e9,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$palette-accent: (
+  50 : #fef7e3,
+  100 : #fdebb9,
+  200 : #fcde8b,
+  300 : #fbd05d,
+  400 : #fac63a,
+  500 : #f9bc17,
+  600 : #f8b614,
+  700 : #f7ad11,
+  800 : #f6a50d,
+  900 : #f59707,
+  A100 : #ffffff,
+  A200 : #fff6ea,
+  A400 : #ffe0b7,
+  A700 : #ffd49d,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #000000,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$primary: mat-palette($palette-primary);
+$accent: mat-palette($palette-accent, 500, 400, 600);
 
 // The warn palette is optional (defaults to red).
-$accessible-web-warn: mat-palette($mat-red);
+$warn: mat-palette($mat-red);
+
+// The background color
+$background-color: #1c2d5a;
 
 // Create the theme object (a Sass map containing all of the palettes).
-$accessible-web-theme: mat-light-theme($accessible-web-primary, $accessible-web-accent, $accessible-web-warn);
+$theme: mat-light-theme($primary, $accent, $warn);
+
+$background: map-get($theme, background);
+$background: map_merge($background, (background: $background-color));
+$theme: map_merge($theme, (background: $background));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($accessible-web-theme);
+@include angular-material-theme($theme);
 
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+h1, h2, h3, h4, h5, h6 {color: white}
