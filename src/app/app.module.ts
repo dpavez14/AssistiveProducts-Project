@@ -17,13 +17,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { CommentsComponent } from './components/comments/comments.component';
 import { ResultsComponent } from './components/results/results.component';
 import { PositionsComponent } from './components/positions/positions.component';
-import {FixturesComponent} from './components/fixtures/fixtures.component';
+import { FixturesComponent } from './components/fixtures/fixtures.component';
+import { CommentDialogComponent } from './components/comments/comment-dialog/comment-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import {FixturesComponent} from './components/fixtures/fixtures.component';
     CommentsComponent,
     ResultsComponent,
     PositionsComponent,
-    FixturesComponent
+    FixturesComponent,
+    CommentDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +56,12 @@ import {FixturesComponent} from './components/fixtures/fixtures.component';
     MatPaginatorModule,
     MatSortModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
+    MatDialogModule,
+    FormsModule,
+  ],
+  entryComponents: [
+    CommentDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,12 +1,12 @@
-<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
-  <mat-card class="shipping-card">
+<div style="margin: 2em">
+  <!--mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title>Shipping Information</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="row">
         <div class="col">
-          <mat-form-field class="full-width">
+          <mat-form-field class="full-width" color="accent">
             <input matInput placeholder="Company" formControlName="company">
           </mat-form-field>
         </div>
@@ -96,5 +96,43 @@
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit">Submit</button>
     </mat-card-actions>
-  </mat-card>
-</form>
+  </mat-card-->
+
+  <h1>Comments</h1>
+  <h2>Totem Ham vs Arsenal - {{'07-23-2018' | date:'EEEE d MMMM y'}}</h2>
+
+  <div fxLayoutAlign="end start">
+    <button aria-label="Add comment" mat-button color="accent" (click)="openDialog()">
+      ADD COMMENT
+      <mat-icon>add_comment</mat-icon>
+    </button>
+  </div>
+
+
+  <div *ngIf="comments.length > 0">
+    <mat-card role="list" class="shipping-card">
+      <div role="listitem" *ngFor="let comment of comments; let i = index">
+        <mat-divider *ngIf="i != 0"></mat-divider>
+        <mat-card-header>
+          <mat-card-title class="card-name" [ngStyle]="i != 0 ? {'margin-top': '0.5em'} : {}">{{comments[comments.length - i - 1].name}}</mat-card-title>
+          <mat-card-subtitle>{{comments[comments.length - i - 1].date | date: 'MM-dd-yyyy hh:mm'}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          {{comments[comments.length - i -1].comment}}
+        </mat-card-content>
+      </div>
+    </mat-card>
+  </div>
+
+  <div *ngIf="comments.length == 0">
+    <mat-card class="shipping-card">
+      <mat-card-content fxLayout="column" fxFlexAlign="middle">
+        <div class="mat-h3">No comments available.</div>
+        <div class="mat-h3">Be the first in comment the match.</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+
+  </div>
+
