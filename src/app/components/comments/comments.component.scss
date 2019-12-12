@@ -25,3 +25,10 @@
 .col:last-child {
   margin-right: 0;
 }
+
+::ng-deep .mat-card-header-text {
+  margin: 0 0 !important;
+}
+
+
+h1, h2 {color: white}
