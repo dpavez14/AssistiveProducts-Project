@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import {ApiService} from '../../services/api.service';
+import {Team} from '../../models/team';
 
 @Component({
   selector: 'app-results',
@@ -13,11 +15,19 @@ export class ResultsComponent {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatTable, {static: false}) table: MatTable<ResultsItem>;
+  team: any;
+
+  constructor(private apiService: ApiService) {
+    apiService.getTeam().subscribe((res: Team) => {
+      this.team = res;
+    });
+  }
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['time', 'result', 'location'];
   dataSources = EXAMPLE_DATA;
 }
+
 
 interface ResultsItem {
   date: string;
@@ -25,7 +35,7 @@ interface ResultsItem {
 }
 
 interface TeamResult {
-  id: number
+  id: number;
   name: string;
   logo: string;
   score: number;
