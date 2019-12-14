@@ -1,4 +1,4 @@
-<div style="margin: 2em">
+<div style="padding: 2rem">
   <!--mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title>Shipping Information</mat-card-title>
@@ -98,10 +98,10 @@
     </mat-card-actions>
   </mat-card-->
 
-  <h1>Comments</h1>
-  <h2>Totem Ham vs Arsenal - {{'07-23-2018' | date:'EEEE d MMMM y'}}</h2>
+  <h1 class="mat-h1">Comments</h1>
+  <h2 class="mat-h2"><span>Totem Ham vs Arsenal - </span><span>{{matchDate | date:'EEEE d MMMM y'}}</span></h2>
 
-  <div fxLayoutAlign="end start">
+  <div fxLayoutAlign="end start" style="margin-bottom: 1rem">
     <button aria-label="Add comment" mat-button color="accent" (click)="openDialog()">
       ADD COMMENT
       <mat-icon>add_comment</mat-icon>
@@ -124,11 +124,10 @@
     </mat-card>
   </div>
 
-  <div *ngIf="comments.length == 0">
+  <div *ngIf="comments.length == 0" fxFlexAlign="center center">
     <mat-card class="shipping-card">
-      <mat-card-content fxLayout="column" fxFlexAlign="middle">
-        <div class="mat-h3">No comments available.</div>
-        <div class="mat-h3">Be the first in comment the match.</div>
+      <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+        <div class="mat-h3 grey-text" style="margin: 2rem 0 2rem 0; text-align: center">No comments yet. Be the first to comment the match.</div>
       </mat-card-content>
     </mat-card>
   </div>

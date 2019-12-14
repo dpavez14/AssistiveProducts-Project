@@ -1,10 +1,11 @@
+@import '~@angular/material/theming';
+
 .full-width {
   width: 100%;
 }
 
 .shipping-card {
   min-width: 120px;
-  margin: 20px auto;
 }
 
 .mat-radio-button {
@@ -30,5 +31,8 @@
   margin: 0 0 !important;
 }
 
+.grey-text {
+  color: map-get($mat-grey, 700)
+}
 
 h1, h2 {color: white}

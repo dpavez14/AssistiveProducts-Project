@@ -16,6 +16,7 @@ interface Comment {
 })
 export class CommentsComponent {
   comments: Comment[] = [];
+  matchDate = new Date('07/23/2018');
 
   constructor(public dialog: MatDialog) {
 

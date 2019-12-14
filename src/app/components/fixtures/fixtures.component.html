@@ -1,7 +1,7 @@
-<div style="margin: 2em">
-  <h1>Fixtures</h1>
+<div style="padding: 2rem">
+  <h1 class="mat-h1">Fixtures</h1>
   <div *ngFor="let dataSource of dataSources">
-    <h2 style="text-align: center">{{dataSource.date | date:'EEEE d MMMM y'}}</h2>
+    <h2 class="mat-h2" style="text-align: center">{{dataSource.date | date:'EEEE d MMMM y'}}</h2>
     <div class="mat-elevation-z8" style="margin-bottom: 2em">
       <table [dataSource]="dataSource.data" mat-table class="full-width-table" aria-label="Elements">
         <!-- Id Column -->
@@ -15,9 +15,9 @@
           <th mat-header-cell *matHeaderCellDef>Match</th>
           <td mat-cell *matCellDef="let row">
             <span >{{row.team1}}</span>
-            <img src="{{row.logo1}}" alt="" width="25" height="25">
+            <img src="{{row.logo1}}" alt="" width="30" height="30">
             <span > vs </span>
-            <img src="{{row.logo2}}" alt="" width="25" height="25">
+            <img src="{{row.logo2}}" alt="" width="30" height="30">
             <span >{{row.team2}}</span>
           </td>
         </ng-container>

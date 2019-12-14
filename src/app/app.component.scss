@@ -1,0 +1,5 @@
+@import '~@angular/material/theming';
+
+::ng-deep .mat-header-cell {
+  color: map-get($mat-grey, 800);
+}
