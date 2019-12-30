@@ -1,7 +1,17 @@
 @import '~@angular/material/theming';
 
+a {
+  color: black;
+  text-decoration: none;
+}
+
 .full-width-table {
   width: 100%;
+}
+
+h1, h2, h3,
+  h4, h5, h6 {
+    color: white;
 }
 
 .mat-header-cell {
@@ -18,14 +28,8 @@
 }
 
 .mat-row:hover {
-  background: rgb(22,32,72);
-  background: linear-gradient(90deg, rgba(22,32,72,1) 0%, rgba(67,63,62,1) 41%, rgba(119,98,51,1) 67%, rgba(249,188,23,1) 100%);
+  background: rgba(22,32,72, 0.1);
 }
-
-.mat-row:hover .mat-cell {
-  color: white;
-}
-
 
 .mat-cell img {
   vertical-align: middle;
@@ -44,15 +48,33 @@
   justify-content: center;
   width: 30px;
   height: 30px;
-  background-color: map_get($mat-blue, 100);
+  background-color: #f9bc17;
   color: black;
   padding: 3px;
 }
 
 .bordered-right {
-  border-right: .5px solid gray;
+  border-right: .5px solid white;
 }
 
 .bordered-left {
-  border-left: .5px solid gray;
+  border-left: .5px solid white;
+}
+
+#localTeam {
+  text-align: right;
+}
+
+#visitorTeam {
+  text-align: left;
+}
+
+#localTeam, #visitorTeam {
+  width: 300px;
+  overflow: hidden;
+}
+
+.location-cell {
+  width: 200px;
+  text-align: left;
 }
