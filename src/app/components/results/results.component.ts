@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -11,21 +11,53 @@ import {Team} from '../../models/team';
   styleUrls: ['./results.component.scss']
 })
 
-export class ResultsComponent {
+export class ResultsComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatTable, {static: false}) table: MatTable<ResultsItem>;
-  team: any;
+  teams: Team[];
 
-  constructor(private apiService: ApiService) {
-    apiService.getTeam().subscribe((res: Team) => {
-      this.team = res;
-    });
-  }
+  constructor(private apiService: ApiService) { }
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['time', 'result', 'location'];
   dataSources = EXAMPLE_DATA;
+
+  ngOnInit(): void {
+    // Example
+    this.apiService.getTeams().subscribe(
+      (res: Team[]) => {
+        this.teams = res;
+        console.log(this.teams);
+        this.teams.forEach(
+          (team: Team) => {
+            console.log(team.id);
+          }
+        );
+
+        // Example 2 (here to be called after the previous one)
+        this.apiService.getTeamsFiltered().subscribe(
+          (res: Team[]) => {
+            this.teams = res;
+            console.log(this.teams);
+            this.teams.forEach(
+              (team: Team) => {
+                console.log(team.id);
+              }
+            );
+          },
+          (error: any) => {
+            console.log('Error trying to retrieve the teams at ResultsComponent: ' + error);
+          }
+        );
+        // End example 2
+      },
+      (error: any) => {
+        console.log('Error trying to retrieve the teams at ResultsComponent: ' + error);
+      }
+    );
+  }
+
 }
 
 

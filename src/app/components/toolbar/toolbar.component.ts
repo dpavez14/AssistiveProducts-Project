@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import {MatSidenav} from '@angular/material/sidenav';
 import {Router} from '@angular/router';
+import {ApiService} from "../../services/api.service";
 
 @Component({
   selector: 'app-toolbar',
@@ -22,7 +23,8 @@ export class ToolbarComponent implements AfterViewInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private router: Router,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private apiService: ApiService,
   ) {}
 
   ngAfterViewInit(): void {
