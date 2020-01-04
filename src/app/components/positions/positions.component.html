@@ -1,25 +1,98 @@
-<div class="mat-elevation-z8">
-  <table mat-table class="full-width-table" matSort aria-label="Elements">
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
-    </ng-container>
+<div style="margin: 2em">
+  <h1>Standings</h1>
+    <div class="mat-elevation-z8" style="margin-bottom: 2em">
+      <table [dataSource]="dataSources" mat-table class="full-width-table" aria-label="Elements">
+        <!-- Id Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef>Position</th>
+          <td mat-cell *matCellDef="let row">{{row.position}}</td>
+        </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort->Name</th>
-      <td mat-cell *matCellDef="let row">{{row.name}}</td>
-    </ng-container>
+        <!-- Name Column "gf", "ga", "gd"-->
+        <ng-container matColumnDef="team">
+          <th mat-header-cell *matHeaderCellDef>Team</th>
+          <td mat-cell *matCellDef="let row">
+              <span>{{row.team_name}}</span>
+          </td>
+        </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+        <ng-container matColumnDef="recentForm">
+          <th mat-header-cell *matHeaderCellDef>Form</th>
+            <td mat-cell *matCellDef="let row">
+              <div class="recent-form-wrapper">
+              <div *ngFor="let formVal of row.recent_form.split('')">
+                <div *ngIf="formVal==='W'" class="recent-form-item recent-form-win">
+                  <span>{{formVal}}</span>
+                </div>
+                <div *ngIf="formVal==='L'" class="recent-form-item recent-form-loss">
+                  <span>{{formVal}}</span>
+                </div>
+                <div *ngIf="formVal==='D'" class="recent-form-item recent-form-draw">
+                  <span>{{formVal}}</span>
+                </div>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="played">
+          <th mat-header-cell *matHeaderCellDef width="6.25%">Played</th>
+          <td mat-cell *matCellDef="let row">
+            <span>{{row.overall.games_played}}</span>
+          </td>
+        </ng-container>
 
-  <mat-paginator #paginator
-      [length]="dataSource?.data.length"
-      [pageIndex]="0"
-      [pageSize]="50"
-      [pageSizeOptions]="[25, 50, 100, 250]">
-  </mat-paginator>
+        <ng-container matColumnDef="won">
+          <th mat-header-cell *matHeaderCellDef width="6.25%">Won</th>
+          <td mat-cell *matCellDef="let row">
+            <span>{{row.overall.won}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="drawn">
+          <th mat-header-cell *matHeaderCellDef width="6.25%">Drawn</th>
+          <td mat-cell *matCellDef="let row">
+            <span>{{row.overall.draw}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lost">
+          <th mat-header-cell *matHeaderCellDef width="6.25%">Lost</th>
+          <td mat-cell *matCellDef="let row">
+            <span>{{row.overall.lost}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gf">
+          <th mat-header-cell *matHeaderCellDef width="6.25%">GF</th>
+          <td mat-cell *matCellDef="let row">
+          <span>{{row.overall.goals_scored}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ga">
+          <th mat-header-cell *matHeaderCellDef width="6.25%">GA</th>
+          <td mat-cell *matCellDef="let row">
+            <span>{{row.overall.goals_against}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="gd">
+          <th mat-header-cell *matHeaderCellDef width="6.25%">GD</th>
+          <td mat-cell *matCellDef="let row">
+              <span>{{row.total.goal_difference}}</span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="points">
+          <th mat-header-cell *matHeaderCellDef width="6.25%">Points</th>
+          <td mat-cell *matCellDef="let row">
+            <span style="font-weight: bold;">{{row.total.points}}</span>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row role="presentation" *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
 </div>
