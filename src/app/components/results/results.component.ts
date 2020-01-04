@@ -18,54 +18,17 @@ export class ResultsComponent {
   results: ResultsItem[];
 
   constructor(private apiService: ApiService) {
-    let resultsItem: ResultsItem[] = []
-    apiService.getVenues().subscribe((venuesResponse: any)=> {
-      apiService.getResults().subscribe((resultsResponse: Results) => {
-        apiService.getTeams().subscribe((teamsResponse: TeamResponse) => {
-          
-          let venues = [];
-          venues = venuesResponse.data.map(venue => {
-            return {
-              id: venue.id,
-              name: venue.name,
-              city: venue.city
-            };
-          });
+    apiService.getVenues(venues => {
+      apiService.getTeams(teams => {
+        apiService.getResults(teams, venues, results => {
 
-          const results = resultsResponse.data.results.data;
-          let resultsData: Result[] = results
-            .map(result => objectFor(result))
-            .sort(sortByDate);
-          // sort the results so they get displayed in the desired order
+          let resultsItem: ResultsItem[] = [];
+          results.forEach(result => {
 
-          resultsData.forEach(result => {
-            // team 1
-            const team1 = teamsResponse.data.filter(
-              team => team.id === result.localteam.id
-            )[0];
-            result.localteam.name = team1.name;
-            result.localteam.logo = team1.logo_path;
-
-            // location
-            result.location = team1.venue_id
-              ? venues.filter(venue => venue.id === team1.venue_id)[0].name
-              : "St. Mirren Park"; // this is St. Mirren team only so it is "safe to do this" r/codegore :)
-
-            // team 2
-            const team2 = teamsResponse.data
-              .filter(team => team.id === result.visitorteam.id)[0];
-            result.visitorteam.name = team2.name;
-            result.visitorteam.logo = team2.logo_path;
-
-            // result date
-            const dateForCurrentResult = resultsItem.filter(
-              item => item.date === result.time.starting_at.date
-            );
+            const resultDate = result.time.starting_at.date;
+            const dateForCurrentResult = resultsItem.filter(item => item.date === resultDate);
             if (dateForCurrentResult.length === 0) {
-              resultsItem.push({
-                date: result.time.starting_at.date,
-                data: [result]
-              });
+              resultsItem.push(newItem(result.time.starting_at.date, [result]))
             } else {
               const data: Result[] = dateForCurrentResult[0].data;
               dateForCurrentResult[0].data = [...data, result];
@@ -83,44 +46,11 @@ export class ResultsComponent {
   dataSources = this.results
 }
 
+const newItem = (date: string, data: Result[]) => {
+  return { date, data };
+}
+
 export interface ResultsItem {
   date: string;
   data: Result[];
-}
-
-const sortByDate = (resultA: Result, resultB: Result): number => {
-  const resATimestamp = resultA.time.starting_at.timestamp;
-  const resBTimestamp = resultB.time.starting_at.timestamp;
-  return resBTimestamp - resATimestamp;
-}
-
-const objectFor = (result): Result => {
-  return {
-    localteam: {
-      id: result.localteam_id,
-      name: "",
-      logo: ""
-    },
-    visitorteam: {
-      id: result.visitorteam_id,
-      name: "",
-      logo: ""
-    },
-    time: {
-      starting_at: {
-        date: result.time.starting_at.date,
-        time: result.time.starting_at.time
-          .split(":")
-          .slice(0, -1)
-          .join("h"),
-        timestamp: result.time.starting_at.timestamp,
-        timezone: result.time.starting_at.timezone
-      }
-    },
-    scores: {
-      localteam_score: result.scores.localteam_score,
-      visitorteam_score: result.scores.visitorteam_score
-    },
-    location: ""
-  };
 }

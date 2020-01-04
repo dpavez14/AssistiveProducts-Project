@@ -1,5 +1,5 @@
 export interface Results {
-  data: any
+  data: ResponseData
 }
 
 interface ResponseData {
@@ -11,17 +11,18 @@ interface Data {
 }
 
 export interface Result {
-  localteam: Team;
-  visitorteam: Team;
+  //local team
+  localteam_id: number;
+  localteam_name: string;
+  localteam_logo: string;
+  //visitor team
+  visitorteam_id: number;
+  visitorteam_name: string;
+  visitorteam_logo: string;
+
   time: Time;
   scores: Scores;
   location: string;
-}
-
-interface Team {
-  id: number;
-  name: string;
-  logo: string;
 }
 
 interface Time {
