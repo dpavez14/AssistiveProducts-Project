@@ -10,8 +10,7 @@ import { Venues, Venue } from "../models/venues";
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  private API_KEY =
-    "tkCmhuDCZekEZwSwdhPEjwP3Akj8nlQPaslco1kGXLrsjOhuyC6lcbleUEE9";
+  private API_KEY = "tkCmhuDCZekEZwSwdhPEjwP3Akj8nlQPaslco1kGXLrsjOhuyC6lcbleUEE9";
 
   private endpointFor(endpoint: string) {
     return `${endpoint}${this.API_KEY}`;
@@ -42,6 +41,12 @@ export class ApiService {
       .get<Venues>(this.endpointFor(K.venues))
       .subscribe(res => callback(res.data));
   }
+  
+  getStandings(callback: (standings: Standing[]) => any) {
+    this.http
+    .get<StandingsResponse>(this.endpointFor(K.standings))
+    .subscribe(res => callback(res.data[0].standings.data))
+  }
 }
 
 const updateMissingInfoFor = (result: Result, teams: Team[], venues: Venue[]) => {
@@ -68,5 +73,6 @@ const K = {
   results: "https://soccer.sportmonks.com/api/v2.0/seasons/16222?include=results,fixtures&api_token=",
   teams: "https://soccer.sportmonks.com/api/v2.0/teams/season/16222?api_token=",
   venues: "https://soccer.sportmonks.com/api/v2.0/venues/season/16222?api_token=",
+  standings: "https://soccer.sportmonks.com/api/v2.0/standings/season/16222?api_token="
   St_Mirren_Park: "St. Mirren Park"
 };
