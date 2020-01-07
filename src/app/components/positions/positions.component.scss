@@ -1,3 +1,62 @@
 .full-width-table {
   width: 100%;
 }
+
+h1 {
+  color: white;
+}
+
+.mat-card {
+  border-radius: 0;
+  box-sizing: border-box;
+  padding: 2em;
+  background-color: transparent;
+  color: white;
+  box-shadow: none;
+}
+
+.mat-list-item {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+}
+
+.position-number {
+  color: #f9bc17;
+  margin-right: 20px;
+}
+
+.team-name {
+  color: white;
+}
+
+.recent-form-wrapper {
+  display: flex;
+}
+
+.recent-form-item {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin: 2px;
+}
+
+.recent-form-win {
+  background-color: rgb(71, 172, 71);
+}
+
+.recent-form-loss {
+  background-color: rgb(211, 88, 88);
+}
+
+.recent-form-draw {
+  background-color: rgb(134, 129, 129);
+}
+
+table {
+  min-width: 600px;
+}
