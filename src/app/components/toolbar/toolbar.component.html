@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container">
+<!--mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
@@ -44,4 +44,35 @@
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container-->
+
+<mat-toolbar>
+  <!--button
+    id="menu"
+    type="button"
+    aria-label="Toggle navigation menu"
+    mat-icon-button
+    (click)="drawer.toggle()"
+    style="margin-right: 1em">
+    <mat-icon role="presentation">menu</mat-icon>
+  </button-->
+  <img
+    src="https://apuestaformat.es/files/91/9d89ae3b0c3b81f03583f3a5197e6c/schottland-premier-league-logo_510x260_00.png"
+    alt="Scottish Premiership logo" height="50em" style="vertical-align: middle;">
+
+
+</mat-toolbar>
+
+<nav mat-tab-nav-bar mat-stretch-tabs color="accent" backgroundColor="primary" >
+  <a mat-tab-link
+     *ngFor="let link of navLinks"
+     [routerLink]="link.path"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    {{link.label}}
+  </a>
+</nav>
+
+<router-outlet></router-outlet>
+
+

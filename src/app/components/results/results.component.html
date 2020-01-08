@@ -1,26 +1,28 @@
-<div style="margin: 2em">
-  <h1>Results</h1>
+<div style="padding: 2rem">
+  <h1 class="mat-h1">Results</h1>
   <div *ngFor="let dataSource of dataSources">
-    <h2>{{dataSource.date | date:'EEEE d MMMM y'}}</h2>
-    <mat-list>
-      <mat-list-item *ngFor="let row of dataSource.data">
-        <a class="result" href="https://youtube.com">
-          <div style="width: 50px">{{row.time.starting_at.time.split(":").slice(0, -1).join("h")}}</div>
-          <div id="localTeam">
-            <span>{{row.localteam_name}}</span>
-            <img alt="local team logo" src="{{row.localteam_logo}}" alt="" width="30" height="30">
-          </div>
-          <div style="display:flex;margin: 0 10px 0 10px;">
-            <span class="score bordered-right">{{row.scores.visitorteam_score}}</span>
-            <span class="score bordered-left">{{row.scores.localteam_score}}</span>
-          </div>
-          <div id="visitorTeam">
-            <img alt="visitor team logo"src="{{row.visitorteam_logo}}" alt="" width="30" height="30">
-            <span>{{row.visitorteam_name}}</span>
-          </div>
-          <div><img alt="location icon" width="20" src="http://cdn.onlinewebfonts.com/svg/img_319799.png">{{row.location}}</div>
-          <img id="right-arrow" width="20" alt="arrow right icon" src="https://cdn1.iconfinder.com/data/icons/feather-2/24/arrow-right-512.png">
-        </a>
+    <h2 class="mat-h2">{{dataSource.date | date:'EEEE d MMMM y'}}</h2>
+    <mat-list style="margin-bottom: 1em" role="list">
+      <mat-list-item *ngFor="let row of dataSource.data.reverse()" role="listitem">
+        <div class="result">
+          <span style="width: 50px" aria-label="Time">
+            {{row.time.starting_at.time.split(":").slice(0, -1).join(":")}}
+          </span>
+          <span id="localTeam">
+            <span aria-label="Local team">{{row.localteam_name}}</span>
+            <img aria-hidden="true" src="{{row.localteam_logo}}" alt="" width="30" height="30">
+          </span>
+          <span style="display:flex;margin: 0 10px 0 10px;">
+            <span aria-label="Local team goals" class="score bordered-right">{{row.scores.localteam_score}}</span>
+            <span aria-label="Visitor team goals" class="score bordered-left">{{row.scores.visitorteam_score}}</span>
+          </span>
+          <span id="visitorTeam">
+            <img aria-hidden="true" src="{{row.visitorteam_logo}}" alt="" width="30" height="30">
+            <span aria-label="Visitor team">{{row.visitorteam_name}}</span>
+          </span>
+          <span aria-label="Location"><img aria-hidden="true" alt="" width="20" src="http://cdn.onlinewebfonts.com/svg/img_319799.png">{{row.location}}</span>
+          <img id="right-arrow" width="20" alt="" src="https://cdn1.iconfinder.com/data/icons/feather-2/24/arrow-right-512.png">
+        </div>
       </mat-list-item>
     </mat-list>
   </div>

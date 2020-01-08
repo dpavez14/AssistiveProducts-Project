@@ -19,5 +19,9 @@
 }
 
 .item-active, .item-active:hover {
-  background-color: map_get($mat-blue, 100)
+  background-color: map-get($mat-blue, 100)
+}
+
+.mat-tab-link {
+  opacity: 0.9;
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CommentData, CommentDialogComponent } from './comment-dialog/comment-dialog.component';
 import * as moment from 'moment';
@@ -15,10 +15,11 @@ interface Comment {
   styleUrls: ['./comments.component.scss']
 })
 export class CommentsComponent {
+  @Input() id: number;
   comments: Comment[] = [];
+  matchDate = new Date('07/23/2018');
 
   constructor(public dialog: MatDialog) {
-
   }
 
   openDialog(): void {

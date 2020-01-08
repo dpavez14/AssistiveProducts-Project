@@ -32,6 +32,7 @@ h1 {
 
 .recent-form-wrapper {
   display: flex;
+  justify-content: center;
 }
 
 .recent-form-item {
@@ -46,17 +47,27 @@ h1 {
 }
 
 .recent-form-win {
-  background-color: rgb(71, 172, 71);
+  background-color: #327B32;
 }
 
 .recent-form-loss {
-  background-color: rgb(211, 88, 88);
+  background-color: #C93636;
 }
 
 .recent-form-draw {
-  background-color: rgb(134, 129, 129);
+  background-color: #6E6E6E;
 }
 
 table {
   min-width: 600px;
+}
+
+.mat-header-cell {
+  text-align: center;
+  justify-content: center;
+}
+
+.mat-cell {
+  text-align: center;
+  justify-content: center;
 }

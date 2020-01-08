@@ -9,7 +9,7 @@ import {FixturesComponent} from './components/fixtures/fixtures.component';
 const routes: Routes = [
   { path: 'fixtures', component: FixturesComponent },
   { path: 'results', component: ResultsComponent },
-  { path: 'positions', component: PositionsComponent },
+  { path: 'standings', component: PositionsComponent },
   { path: 'comments/:id', component: CommentsComponent },
   { path: '', redirectTo: '/fixtures', pathMatch: 'full' },
 ];

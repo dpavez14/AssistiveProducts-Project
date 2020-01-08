@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 .full-width-table {
   width: 100%;
 }
@@ -14,6 +16,11 @@
 
 .mat-cell img {
   vertical-align: middle;
+  margin: 0 5px 0 5px;
+}
+
+.mat-row:hover {
+  background: map-get($mat-grey, 100);
 }
 
 h1, h2, h3, h4, h5, h6 {

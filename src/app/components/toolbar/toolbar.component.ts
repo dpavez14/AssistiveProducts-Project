@@ -5,6 +5,11 @@ import { map, shareReplay } from 'rxjs/operators';
 import {MatSidenav} from '@angular/material/sidenav';
 import {Router} from '@angular/router';
 
+interface Link {
+  label: string;
+  path: string;
+}
+
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
@@ -12,6 +17,20 @@ import {Router} from '@angular/router';
 })
 export class ToolbarComponent implements AfterViewInit {
   @ViewChild('drawer', {static: false}) drawer: MatSidenav;
+  navLinks: Link[] = [
+    {
+      label: 'Fixtures',
+      path: '/fixtures'
+    },
+    {
+      label: 'Results',
+      path: '/results'
+    },
+    {
+      label: 'Standings',
+      path: '/standings'
+    }
+  ];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -23,7 +42,7 @@ export class ToolbarComponent implements AfterViewInit {
     private breakpointObserver: BreakpointObserver,
     private router: Router,
     private renderer: Renderer2
-  ) {}
+  ) {  }
 
   ngAfterViewInit(): void {
     // Autofocus first element of sidenav when it is opened
