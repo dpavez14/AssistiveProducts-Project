@@ -1,5 +1,5 @@
 <div style="margin: 2em">
-  <h1>Standings</h1>
+  <h1 class="mat-h1">Standings</h1>
     <div class="mat-elevation-z8" style="margin-bottom: 2em">
       <table [dataSource]="dataSources" mat-table class="full-width-table" aria-label="Elements">
         <!-- Id Column -->
@@ -22,19 +22,19 @@
               <div class="recent-form-wrapper">
               <div *ngFor="let formVal of row.recent_form.split('')">
                 <div *ngIf="formVal==='W'" class="recent-form-item recent-form-win">
-                  <span>{{formVal}}</span>
+                  <span aria-label="Won">{{formVal}}</span>
                 </div>
                 <div *ngIf="formVal==='L'" class="recent-form-item recent-form-loss">
-                  <span>{{formVal}}</span>
+                  <span aria-label="Lost">{{formVal}}</span>
                 </div>
                 <div *ngIf="formVal==='D'" class="recent-form-item recent-form-draw">
-                  <span>{{formVal}}</span>
+                  <span aria-label="Draw">{{formVal}}</span>
                 </div>
               </div>
             </div>
           </td>
         </ng-container>
-        
+
         <ng-container matColumnDef="played">
           <th mat-header-cell *matHeaderCellDef width="6.25%">Played</th>
           <td mat-cell *matCellDef="let row">
@@ -64,21 +64,21 @@
         </ng-container>
 
         <ng-container matColumnDef="gf">
-          <th mat-header-cell *matHeaderCellDef width="6.25%">GF</th>
+          <th mat-header-cell *matHeaderCellDef width="6.25%" aria-label="Goals scored">GF</th>
           <td mat-cell *matCellDef="let row">
           <span>{{row.overall.goals_scored}}</span>
           </td>
         </ng-container>
 
         <ng-container matColumnDef="ga">
-          <th mat-header-cell *matHeaderCellDef width="6.25%">GA</th>
+          <th mat-header-cell *matHeaderCellDef width="6.25%" aria-label="Goals against">GA</th>
           <td mat-cell *matCellDef="let row">
             <span>{{row.overall.goals_against}}</span>
           </td>
         </ng-container>
 
         <ng-container matColumnDef="gd">
-          <th mat-header-cell *matHeaderCellDef width="6.25%">GD</th>
+          <th mat-header-cell *matHeaderCellDef width="6.25%" aria-label="Goal difference">GD</th>
           <td mat-cell *matCellDef="let row">
               <span>{{row.total.goal_difference}}</span>
           </td>

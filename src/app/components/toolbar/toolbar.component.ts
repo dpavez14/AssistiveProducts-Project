@@ -27,8 +27,8 @@ export class ToolbarComponent implements AfterViewInit {
       path: '/results'
     },
     {
-      label: 'Positions table',
-      path: '/positions'
+      label: 'Standings',
+      path: '/standings'
     }
   ];
 

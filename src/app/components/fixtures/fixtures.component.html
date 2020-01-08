@@ -1,7 +1,8 @@
 <div style="padding: 2rem">
   <h1 class="mat-h1">Fixtures</h1>
   <div *ngFor="let dataSource of dataSources">
-    <h2 class="mat-h2" style="text-align: center">{{dataSource.date | date:'EEEE d MMMM y'}}</h2>
+    <h2 class="mat-h2">{{dataSource.date | date:'EEEE d MMMM y'}}</h2>
+    <!--h2 class="mat-h2" style="text-align: center">{{dataSource.date | date:'EEEE d MMMM y'}}</h2-->
     <div class="mat-elevation-z8" style="margin-bottom: 2em">
       <table [dataSource]="dataSource.data" mat-table class="full-width-table" aria-label="Elements">
         <!-- Id Column -->
