@@ -1,40 +1,29 @@
 <div style="padding: 2rem">
   <h1>Results</h1>
   <div *ngFor="let dataSource of dataSources">
-    <h2 style="text-align: center">{{dataSource.date | date:'EEEE d MMMM y'}}</h2>
-    <div class="mat-elevation-z8" style="margin-bottom: 2em">
-      <table [dataSource]="dataSource.data" mat-table class="full-width-table" aria-label="Elements">
-        <!-- Id Column -->
-        <ng-container matColumnDef="time">
-          <th mat-header-cell *matHeaderCellDef>Time</th>
-          <td mat-cell *matCellDef="let row">{{row.time}}</td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="result">
-          <th mat-header-cell *matHeaderCellDef>Match</th>
-          <td mat-cell *matCellDef="let row">
-            <div class="result">
-              <span>{{row.team1.name}}</span>
-              <img src="{{row.team1.logo}}" alt="" width="30" height="30">
-              <div style="display:flex;margin: 0 10px 0 10px;">
-                <span class="score bordered-right">{{row.team1.score}}</span>
-                <span class="score bordered-left">{{row.team2.score}}</span>
-              </div>
-              <img src="{{row.team2.logo}}" alt="" width="30" height="30">
-              <span>{{row.team2.name}}</span>
-            </div>
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="location">
-          <th mat-header-cell *matHeaderCellDef>Location</th>
-          <td mat-cell *matCellDef="let row">{{row.location}}</td>
-        </ng-container>
-
-        <tr mat-header-row role="presentation" *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
+    <h2>{{dataSource.date | date:'EEEE d MMMM y'}}</h2>
+    <mat-list>
+      <mat-list-item *ngFor="let row of dataSource.data">
+        <a class="result" href="https://youtube.com">
+          <div style="width: 50px">{{row.time.starting_at.time.split(":").slice(0, -1).join("h")}}</div>
+          <div id="localTeam">
+            <span>{{row.localteam_name}}</span>
+            <img alt="local team logo" src="{{row.localteam_logo}}" alt="" width="30" height="30">
+          </div>
+          <div style="display:flex;margin: 0 10px 0 10px;">
+            <span class="score bordered-right">{{row.scores.visitorteam_score}}</span>
+            <span class="score bordered-left">{{row.scores.localteam_score}}</span>
+          </div>
+          <div id="visitorTeam">
+            <img alt="visitor team logo"src="{{row.visitorteam_logo}}" alt="" width="30" height="30">
+            <span>{{row.visitorteam_name}}</span>
+          </div>
+          <div><img alt="location icon" width="20" src="http://cdn.onlinewebfonts.com/svg/img_319799.png">{{row.location}}</div>
+          <img id="right-arrow" width="20" alt="arrow right icon" src="https://cdn1.iconfinder.com/data/icons/feather-2/24/arrow-right-512.png">
+        </a>
+      </mat-list-item>
+    </mat-list>
   </div>
 </div>
+
+
