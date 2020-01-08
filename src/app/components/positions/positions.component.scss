@@ -32,6 +32,7 @@ h1 {
 
 .recent-form-wrapper {
   display: flex;
+  justify-content: center;
 }
 
 .recent-form-item {
@@ -59,4 +60,14 @@ h1 {
 
 table {
   min-width: 600px;
+}
+
+.mat-header-cell {
+  text-align: center;
+  justify-content: center;
+}
+
+.mat-cell {
+  text-align: center;
+  justify-content: center;
 }
