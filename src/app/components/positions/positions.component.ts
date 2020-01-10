@@ -4,6 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ApiService } from '../../services/api.service';
 import { Team } from '../../models/team';
+import {MatDialog} from "@angular/material/dialog";
+import {TeamComponent} from "../team/team.component";
 
 @Component({
   selector: 'app-positions',
@@ -16,7 +18,10 @@ export class PositionsComponent {
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
   dataSources = [];
 
-  constructor(private apiService: ApiService) {
+  constructor(
+    private apiService: ApiService,
+    public dialog: MatDialog,
+  ) {
     apiService.getStandings((standings: Standing[]) => {
       this.dataSources = standings;
     });
@@ -35,4 +40,14 @@ export class PositionsComponent {
     'gd',
     'points'
   ];
+
+  private openTeamModal(id: number) {
+    const dialogRef = this.dialog.open(TeamComponent, {
+      minWidth: '100vw',
+      width: '100vw',
+      minHeight: '100vh',
+      height: '100vh',
+      data: {id}
+    });
+  }
 }

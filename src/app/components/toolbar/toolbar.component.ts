@@ -46,10 +46,10 @@ export class ToolbarComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     // Autofocus first element of sidenav when it is opened
-    this.drawer.openedChange.subscribe(() => {
+    /*this.drawer.openedChange.subscribe(() => {
       this.focusElement('nav1');
     });
-    this.arrowNavigation('nav', 1, 4);
+    this.arrowNavigation('nav', 1, 4);*/
   }
 
   navigate(url: string): void {

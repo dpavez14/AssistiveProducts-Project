@@ -7,7 +7,7 @@ interface Standings {
 }
 
 interface StandingsData {
-  data: Standing[]
+  data: Standing[];
 }
 
 interface Standing {
@@ -17,7 +17,6 @@ interface Standing {
   recent_form: string;
   total: StandingTotalStats;
   overall: StandingStats;
-  
 }
 
 interface StandingTotalStats {
