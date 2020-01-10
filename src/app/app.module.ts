@@ -32,6 +32,7 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TeamComponent } from './components/team/team.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { TeamComponent } from './components/team/team.component';
     A11yModule,
     MatTabsModule,
     MatTooltipModule,
+    MatExpansionModule,
   ],
   entryComponents: [
     CommentDialogComponent,

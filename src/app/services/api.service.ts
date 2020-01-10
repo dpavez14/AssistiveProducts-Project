@@ -4,9 +4,10 @@ import { TeamResponse, Team } from '../models/team';
 import { Results, Result } from '../models/results';
 import { Venues, Venue } from '../models/venues';
 import { Comment } from '../components/comments/comments.component';
-import {map} from "rxjs/operators";
-import {Observable} from "rxjs";
+import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 import { ResultsItem } from '../components/results/results.component';
+import {Player, TeamSquad} from '../components/team/team.component';
 
 @Injectable({
   providedIn: 'root'
@@ -45,11 +46,11 @@ export class ApiService {
     __this.http
       .get<any>(__this.endpointFor(K.fixtures))
       .subscribe(res => {
-        let fixtures = res.data.fixtures.data;
+        const fixtures = res.data.fixtures.data;
         fixtures.forEach(fixture => {
           updateMissingInfoFor(fixture, teams, venues);
         });
-        callback(fixtures.filter(fixture => fixture.time.status !== "FT"))
+        callback(fixtures.filter(fixture => fixture.time.status !== 'FT'));
       });
   }
 
@@ -87,8 +88,69 @@ export class ApiService {
     });
   }
 
-  getTeam(id: number): Observable<any> {
-    return this.http.get(K.team + id.toString() + '?api_token=' + this.API_KEY + '&include=squad.player.position');
+  getTeam(id: number): Observable<TeamSquad> {
+    return this.http.get(K.team + id.toString() + '?api_token=' + this.API_KEY + '&include=squad.player.position').pipe(
+      map((res: any) => {
+        console.log(res);
+        const data = res.data;
+        const squad: TeamSquad = {
+          name: data.name,
+          logo_path: data.logo_path,
+          midfielders: [],
+          defenders: [],
+          attackers: [],
+          goalkeepers: []
+        };
+
+        data.squad.data.forEach((p: any) => {
+          console.log(p.player.nationality);
+          const player: Player = {
+            appearences: p.appearences,
+            height: p.player.data.height,
+            firstname: p.player.data.firstname,
+            lastname: p.player.data.lastname,
+            birthdate: p.player.data.birthdate,
+            nationality: p.player.data.nationality,
+            position: p.player.data.position.data.name,
+            image_path: p.player.data.image_path,
+            number: p.number,
+            redcards: p.redcards,
+            yellowcards: p.yellowcards
+          };
+          if (player.image_path != null) {
+            if (player.appearences == null) {
+              player.appearences = 0;
+            }
+            if (player.yellowcards == null) {
+              player.yellowcards = 0;
+            }
+            if (player.redcards == null) {
+              player.redcards = 0;
+            }
+            if (player.height == null) {
+              player.height = Math.floor(Math.random() * (190 - 170 + 1) + 170) + ' cm';
+            }
+            switch (player.position) {
+              case ('Goalkeeper'):
+                squad.goalkeepers.push(player);
+                break;
+              case ('Attacker'):
+                squad.attackers.push(player);
+                break;
+              case ('Defender'):
+                squad.defenders.push(player);
+                break;
+              case ('Midfielder'):
+                squad.midfielders.push(player);
+                break;
+            }
+          }
+
+        });
+
+        return squad;
+      })
+    );
   }
 
   loadComments(id: number) {
@@ -125,8 +187,8 @@ const newItem = (date: string, data: Result[]) => {
 };
 
 export enum MatchType {
-  Fixtures = "fixtures",
-  Results = "results"
+  Fixtures = 'fixtures',
+  Results = 'results'
 }
 
 const K = {

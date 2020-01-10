@@ -61,9 +61,9 @@ export class FixturesComponent {
 
   constructor(apiService: ApiService) {
 
-    apiService.getMatches(MatchType.Fixtures, (items) => { 
+    apiService.getMatches(MatchType.Fixtures, (items) => {
       this.dataSources = items;
     });
-  } 
+  }
 
 }

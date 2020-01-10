@@ -1,5 +1,165 @@
-<h1 mat-dialog-title>Hi {{data.id}}</h1>
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="start center">
+  <button mat-icon-button aria-label="Close team squad" [mat-dialog-close]="true">
+    <mat-icon mat-list-icon aria-hidden="true">close</mat-icon>
+  </button>
+  <img alt="" src="{{squad.logo_path}}" aria-labelledby="teamName" style="max-height: 36px; margin-left: 24px">
+  <h1 class="mat-h1" style="margin-left: 12px"><span id="teamName">{{squad.name}}</span> squad</h1>
+</div>
 <div mat-dialog-content>
-  <p>What's your favorite animal?</p>
+  <h2 class="mat-h2">Goalkeepers</h2>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly" role="list">
+    <mat-card role="listitem" class="card-size" *ngFor="let player of squad.goalkeepers">
+      <mat-card-header fxLayout="row">
+        <div>
+          <mat-card-subtitle>{{player.number == null ? '-' :  player.number}}</mat-card-subtitle>
+          <mat-card-title>{{player.firstname + ' '  + player.lastname}}</mat-card-title>
+        </div>
+        <span fxFlex></span>
+        <img mat-card-image style="margin-left: 10px; max-height: 100px; max-width: 100px" src="{{player.image_path}}" alt="Photo of {{player.firstname + ' '  + player.lastname}}">
+
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+            <p class="mat-body">Nationality: {{' ' + player.nationality}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Appeareances: {{' ' + player.appearences}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Height: {{' ' + player.height}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Red cards: {{' ' + player.redcards}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Yellow cards: {{' ' + player.yellowcards}}</p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <h2 class="mat-h2">Defenders</h2>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" role="list">
+    <mat-card role="listitem" class="card-size" *ngFor="let player of squad.defenders">
+      <mat-card-header fxLayout="row">
+        <div>
+          <mat-card-subtitle>{{player.number == null ? '-' :  player.number}}</mat-card-subtitle>
+          <mat-card-title>{{player.firstname + ' '  + player.lastname}}</mat-card-title>
+        </div>
+        <span fxFlex></span>
+        <img mat-card-image style="max-height: 100px; max-width: 100px" src="{{player.image_path}}" alt="Photo of {{player.firstname + ' '  + player.lastname}}">
+
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+            <p class="mat-body">Nationality: {{' ' + player.nationality}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Appeareances: {{' ' + player.appearences}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Height: {{' ' + player.height}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Red cards: {{' ' + player.redcards}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Yellow cards: {{' ' + player.yellowcards}}</p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <h2 class="mat-h2">Midfielders</h2>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" role="list">
+    <mat-card role="listitem" class="card-size" *ngFor="let player of squad.midfielders">
+      <mat-card-header fxLayout="row">
+        <div>
+          <mat-card-subtitle>{{player.number == null ? '-' :  player.number}}</mat-card-subtitle>
+          <mat-card-title>{{player.firstname + ' '  + player.lastname}}</mat-card-title>
+        </div>
+        <span fxFlex></span>
+        <img mat-card-image style="max-height: 100px; max-width: 100px" src="{{player.image_path}}" alt="Photo of {{player.firstname + ' '  + player.lastname}}">
+
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+            <p class="mat-body">Nationality: {{' ' + player.nationality}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Appeareances: {{' ' + player.appearences}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Height: {{' ' + player.height}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Red cards: {{' ' + player.redcards}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Yellow cards: {{' ' + player.yellowcards}}</p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <h2 class="mat-h2">Forwards</h2>
+  <div fxLayout="row wrap" fxLayoutAlign="space-evenly center" role="list">
+    <mat-card role="listitem" class="card-size" *ngFor="let player of squad.attackers">
+      <mat-card-header fxLayout="row">
+        <div>
+          <mat-card-subtitle>{{player.number == null ? '-' :  player.number}}</mat-card-subtitle>
+          <mat-card-title>{{player.firstname + ' '  + player.lastname}}</mat-card-title>
+        </div>
+        <span fxFlex></span>
+        <img mat-card-image style="max-height: 100px; max-width: 100px" src="{{player.image_path}}" alt="Photo of {{player.firstname + ' '  + player.lastname}}">
+
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+            <p class="mat-body">Nationality: {{' ' + player.nationality}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Appeareances: {{' ' + player.appearences}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Height: {{' ' + player.height}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Red cards: {{' ' + player.redcards}}</p>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>
+            <p class="mat-body">Yellow cards: {{' ' + player.yellowcards}}</p>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
 
 </div>

@@ -1,0 +1,38 @@
+@import '~@angular/material/theming';
+
+::ng-deep .mat-card-header-text {
+  margin: 0 0 !important;
+}
+
+.grey-text {
+  color: map-get($mat-grey, 700)
+}
+
+h2 {color: white}
+
+.mat-h1 {
+  margin-bottom: 0;
+}
+
+.task-header {
+  background-color: transparent;
+  padding: 0 5px;
+  height: 20px;
+}
+.fx-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-dialog-content {
+  margin-bottom: -24px;
+  padding-top: 24px;
+  background-color: #1c2d5a;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+.card-size {
+  width: 300px;
+  margin-bottom: 30px;
+}
+

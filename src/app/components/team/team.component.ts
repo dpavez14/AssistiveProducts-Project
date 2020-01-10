@@ -6,7 +6,7 @@ interface TeamDialogData {
   id: number;
 }
 
-interface TeamSquad {
+export interface TeamSquad {
   name: string;
   logo_path: string;
   goalkeepers: Player[];
@@ -15,7 +15,7 @@ interface TeamSquad {
   attackers: Player[];
 }
 
-interface Player {
+export interface Player {
   firstname: string;
   lastname: string;
   position: string;
@@ -35,6 +35,7 @@ interface Player {
   styleUrls: ['./team.component.scss']
 })
 export class TeamComponent implements OnInit {
+  squad: TeamSquad;
 
   constructor(
     private apiService: ApiService,
@@ -43,7 +44,9 @@ export class TeamComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.apiService.getTeam(this.data.id).subscribe(res => console.log(res));
+    this.apiService.getTeam(this.data.id).subscribe(res => {
+      this.squad = res;
+    });
   }
 
 }
