@@ -4,7 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ApiService } from '../../services/api.service';
 import { Results, Result } from '../../models/results';
-import { TeamResponse } from 'src/app/models/team';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { CommentsComponent } from '../comments/comments.component';
 
 @Component({
   selector: 'app-results',
@@ -12,10 +13,16 @@ import { TeamResponse } from 'src/app/models/team';
   styleUrls: ['./results.component.scss']
 })
 export class ResultsComponent {
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatTable, { static: false }) table: MatTable<ResultsItem>;
   results: ResultsItem[];
-  dataSources = this.results;
+  dialogRef: MatDialogRef<CommentsComponent>;
 
-  constructor(private apiService: ApiService) {
+  constructor(
+    private apiService: ApiService,
+    public dialog: MatDialog
+  ) {
     apiService.getVenues(venues => {
       apiService.getTeams(teams => {
         apiService.getResults(teams, venues, results => {
@@ -39,6 +46,10 @@ export class ResultsComponent {
     });
   }
 
+  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
+  displayedColumns = ['time', 'result', 'location', 'comments'];
+  dataSources = this.results;
+
   public ariaText(row: any): string {
     return 'Time: ' + row.time.starting_at.time.split(':').slice(0, -1).join(':') + '. ' +
       row.localteam_name + ' ' + row.scores.localteam_score + ' ' + this.goals(row.scores.localteam_score) + '. ' +
@@ -48,6 +59,17 @@ export class ResultsComponent {
 
   private goals(g: number): string {
     return g.toString() + (g !== 1 ? ' goals' : ' goal');
+  }
+
+  private openCommentsModal(id: number, localTeam: string, visitorTeam: string, date: string) {
+    this.dialogRef = this.dialog.open(CommentsComponent, {
+      minWidth: '100vw',
+      width: '100vw',
+      minHeight: '100vh',
+      height: '100vh',
+      data: {id, localTeam, visitorTeam, date},
+      ariaLabel: 'Comments section'
+    });
   }
 }
 

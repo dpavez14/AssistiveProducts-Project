@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 .full-width-table {
   width: 100%;
 }
@@ -70,4 +72,18 @@ table {
 .mat-cell {
   text-align: center;
   justify-content: center;
+}
+
+span[role="link"] {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+span[role="link"]:focus {
+  outline: 1px dotted black;
+}
+
+.mat-row:hover {
+  background: map-get($mat-grey, 100);
 }

@@ -20,11 +20,11 @@ h1, h2, h3,
 }
 
 .mat-cell {
-  text-align: center;
-  justify-content: center;
-  padding: 10px;
-  text-align: center;
-}
+   text-align: center;
+   justify-content: center;
+   padding: 10px;
+ }
+
 
 .result {
   display: flex;
@@ -71,8 +71,15 @@ h1, h2, h3,
   align-items: center;
 }
 
+.mat-row:hover {
+  background: map-get($mat-grey, 100);
+}
+
 .location-cell {
   width: 200px;
+  text-align: left;
+  justify-content: left;
+  padding: 10px;
 }
 
 span > img {

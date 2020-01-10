@@ -3,12 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { TeamResponse, Team } from '../models/team';
 import { Results, Result } from '../models/results';
 import { Venues, Venue } from '../models/venues';
+import { Comment } from '../components/comments/comments.component';
+import {map} from "rxjs/operators";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   constructor(private http: HttpClient) {}
+  comments: {[id: number]: Comment[]} = {};
 
   private API_KEY = 'tkCmhuDCZekEZwSwdhPEjwP3Akj8nlQPaslco1kGXLrsjOhuyC6lcbleUEE9';
 
@@ -47,6 +51,19 @@ export class ApiService {
     .get<StandingsResponse>(this.endpointFor(K.standings))
     .subscribe(res => callback(res.data[0].standings.data));
   }
+
+  getTeam(id: number): Observable<any> {
+    return this.http.get(K.team + id.toString() + '?api_token=' + this.API_KEY + '&include=squad.player.position');
+  }
+
+  loadComments(id: number) {
+    return this.comments[id] == null ? [] : this.comments[id];
+  }
+
+  saveComments(id: number, comments: Comment[]) {
+    this.comments[id] = comments;
+    console.log(this.comments);
+  }
 }
 
 const updateMissingInfoFor = (result: Result, teams: Team[], venues: Venue[]) => {
@@ -74,5 +91,6 @@ const K = {
   teams: 'https://soccer.sportmonks.com/api/v2.0/teams/season/16222?api_token=',
   venues: 'https://soccer.sportmonks.com/api/v2.0/venues/season/16222?api_token=',
   standings: 'https://soccer.sportmonks.com/api/v2.0/standings/season/16222?api_token=',
+  team: 'https://soccer.sportmonks.com/api/v2.0/teams/',
   St_Mirren_Park: 'St. Mirren Park'
 };

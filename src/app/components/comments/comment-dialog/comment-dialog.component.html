@@ -5,11 +5,12 @@
     <mat-hint align="end">{{name.value.length}} / 50</mat-hint>
   </mat-form-field>
   <mat-form-field fxFlex>
-    <textarea #comment maxlength="1000" placeholder="Comment" matInput [(ngModel)]="data.comment"></textarea>
-    <mat-hint align="end">{{comment.value.length}} / 1000</mat-hint>
+    <textarea #comment maxlength="1000" placeholder="Comment" matInput [(ngModel)]="data.comment" [formControl]="commentsControl" required></textarea>
+    <mat-hint *ngIf="commentsControl.valid || commentsControl.pristine" align="end">{{comment.value.length}} / 1000</mat-hint>
+    <mat-error *ngIf="commentsControl.invalid && !commentsControl.pristine">{{getCommentsErrorMessage()}}</mat-error>
   </mat-form-field>
 </div>
 <div mat-dialog-actions fxLayoutAlign="end start">
   <button aria-label="Cancel" mat-button (click)="onCancel()">CANCEL</button>
-  <button aria-label="Ok" mat-button [mat-dialog-close]="data">OK</button>
+  <button aria-label="Ok" [disabled]="commentsControl.invalid" mat-button (click)="announceComment()" [mat-dialog-close]="data">OK</button>
 </div>

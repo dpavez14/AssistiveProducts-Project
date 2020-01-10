@@ -1,21 +1,21 @@
 export interface Results {
-  data: ResponseData
+  data: ResponseData;
 }
 
 interface ResponseData {
-  results: Data
+  results: Data;
 }
 
 interface Data {
-  data: Result[]
+  data: Result[];
 }
 
 export interface Result {
-  //local team
+  // local team
   localteam_id: number;
   localteam_name: string;
   localteam_logo: string;
-  //visitor team
+  // visitor team
   visitorteam_id: number;
   visitorteam_name: string;
   visitorteam_logo: string;
@@ -26,7 +26,7 @@ export interface Result {
 }
 
 interface Time {
-  starting_at: StartTime
+  starting_at: StartTime;
 }
 
 interface StartTime {

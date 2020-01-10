@@ -31,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { A11yModule } from '@angular/cdk/a11y';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { TeamComponent } from './components/team/team.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ResultsComponent,
     PositionsComponent,
     FixturesComponent,
-    CommentDialogComponent
+    CommentDialogComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +72,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   ],
   entryComponents: [
     CommentDialogComponent,
+    TeamComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

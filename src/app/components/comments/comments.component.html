@@ -1,6 +1,12 @@
-<h1 mat-dialog-title class="mat-h1">Comments</h1>
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="start center">
+  <button mat-icon-button aria-label="Close comments section" [mat-dialog-close]="true">
+    <mat-icon mat-list-icon aria-hidden="true">close</mat-icon>
+  </button>
+  <h1 class="mat-h1" style="margin-left: 24px">Comments section</h1>
+</div>
+
 <div mat-dialog-content>
-  <h2 class="mat-h2"><span>Totem Ham vs Arsenal - </span><span>{{matchDate | date:'EEEE d MMMM y'}}</span></h2>
+  <h2 class="mat-h2"><span>{{data.localTeam}} vs {{data.visitorTeam}} - </span><span>{{data.date | date:'EEEE d MMMM y'}}</span></h2>
 
   <div fxLayoutAlign="end start" style="margin-bottom: 1rem">
     <button aria-label="Add comment" mat-button color="accent" (click)="openDialog()">
@@ -33,3 +39,4 @@
     </mat-card>
   </div>
 </div>
+

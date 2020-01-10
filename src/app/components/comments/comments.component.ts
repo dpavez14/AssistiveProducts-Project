@@ -1,11 +1,19 @@
-import {Component, Input} from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import {Component, Inject, Input, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { CommentData, CommentDialogComponent } from './comment-dialog/comment-dialog.component';
 import * as moment from 'moment';
+import {ApiService} from '../../services/api.service';
 
-interface Comment {
+export interface Comment {
   name: string;
   comment: string;
+  date: string;
+}
+
+interface CommentsData {
+  id: number;
+  localTeam: string;
+  visitorTeam: string;
   date: string;
 }
 
@@ -14,12 +22,20 @@ interface Comment {
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })
-export class CommentsComponent {
-  @Input() id: number;
+export class CommentsComponent implements OnInit {
   comments: Comment[] = [];
   matchDate = new Date('07/23/2018');
 
-  constructor(public dialog: MatDialog) {
+  constructor(
+    public dialog: MatDialog,
+    public dialogRef: MatDialogRef<CommentDialogComponent>,
+    public apiService: ApiService,
+    @Inject(MAT_DIALOG_DATA) public data: CommentsData
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.comments = this.apiService.loadComments(this.data.id);
   }
 
   openDialog(): void {
@@ -42,6 +58,7 @@ export class CommentsComponent {
           comment: result.comment,
           date: moment().toISOString()
         });
+        this.apiService.saveComments(this.data.id, this.comments);
       }
     });
   }

@@ -100,5 +100,9 @@ $theme: map_merge($theme, (background: $background));
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; background-color: #1c2d5a }
+html, body { height: 100%; background-color: $background-color; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+::ng-deep app-comments.ng-star-inserted {
+  background-color: #1c2d5a;
+}
