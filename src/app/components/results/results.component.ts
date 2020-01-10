@@ -12,8 +12,13 @@ import { TeamResponse } from 'src/app/models/team';
   styleUrls: ['./results.component.scss']
 })
 export class ResultsComponent {
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatTable, { static: false }) table: MatTable<any>;
   results: ResultsItem[];
   dataSources = this.results;
+
+  displayedColumns = ["time", "result", "location"]
 
   constructor(private apiService: ApiService) {
     apiService.getVenues(venues => {
