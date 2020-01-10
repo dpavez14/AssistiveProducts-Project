@@ -26,3 +26,64 @@
 h1, h2, h3, h4, h5, h6 {
   color: white;
 }
+
+
+.result {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 400px;
+  height: 100%;
+  margin: auto;
+}
+
+.score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: #f9bc17;
+  color: black;
+  padding: 3px;
+}
+
+.bordered-right {
+  border-right: .5px solid white;
+}
+
+.bordered-left {
+  border-left: .5px solid white;
+}
+
+#localTeam {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+#visitorTeam {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+#localTeam, #visitorTeam {
+  width: 270px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.mat-row:hover {
+  background: map-get($mat-grey, 100);
+}
+
+.location-cell {
+  width: 200px;
+  text-align: left;
+  justify-content: left;
+  padding: 10px;
+}
+
+span > img {
+  margin: 0 10px 0 10px;
+}

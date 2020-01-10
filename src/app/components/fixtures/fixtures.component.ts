@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { ApiService, MatchType } from 'src/app/services/api.service';
 
 interface DataSource {
   date: string;
@@ -56,6 +57,13 @@ export class FixturesComponent {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['time', 'match',  'location'];
-  dataSources = EXAMPLE_DATA;
+  dataSources = [];
+
+  constructor(apiService: ApiService) {
+
+    apiService.getMatches(MatchType.Fixtures, (items) => { 
+      this.dataSources = items;
+    });
+  } 
 
 }
