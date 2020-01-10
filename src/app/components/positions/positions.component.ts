@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -6,14 +6,14 @@ import { ApiService } from '../../services/api.service';
 import { Team } from '../../models/team';
 import {MatDialog} from '@angular/material/dialog';
 import {TeamComponent} from '../team/team.component';
-import {Title} from "@angular/platform-browser";
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-positions',
   templateUrl: './positions.component.html',
   styleUrls: ['./positions.component.scss']
 })
-export class PositionsComponent {
+export class PositionsComponent implements AfterViewInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
@@ -22,7 +22,9 @@ export class PositionsComponent {
   constructor(
     private apiService: ApiService,
     public dialog: MatDialog,
-    titleService: Title,
+    private titleService: Title,
+    private renderer: Renderer2,
+    private elem: ElementRef
   ) {
     titleService.setTitle('Scottish Premiership - Standings');
     apiService.getStandings((standings: Standing[]) => {
@@ -43,6 +45,13 @@ export class PositionsComponent {
     'gd',
     'points'
   ];
+
+  ngAfterViewInit(): void {
+    const elements = this.elem.nativeElement.querySelectorAll('.mat-tooltip-panel');
+    elements.forEach(e => {
+      e.setAttribute('role', 'tooltip');
+    });
+  }
 
   public openTeamModal(id: number) {
     const dialogRef = this.dialog.open(TeamComponent, {

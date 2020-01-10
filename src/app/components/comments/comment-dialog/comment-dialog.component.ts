@@ -30,7 +30,7 @@ export class CommentDialogComponent implements OnInit {
   }
 
   getCommentsErrorMessage(): string {
-    return this.commentsControl.hasError('required') ? 'You must enter a value' :
+    return this.commentsControl.hasError('required') ? 'Error: You must write a comment' :
       this.commentsControl.hasError('maxLength') ? 'The comment can\'t exceed 1000 characters' :
         '';
   }

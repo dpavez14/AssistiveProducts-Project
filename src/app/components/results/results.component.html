@@ -6,7 +6,7 @@
       <table [dataSource]="dataSource.data.reverse()" mat-table class="full-width-table">
         <!-- Id Column -->
         <ng-container matColumnDef="time">
-          <th mat-header-cell *matHeaderCellDef>Time</th>
+          <th mat-header-cell *matHeaderCellDef >Time</th>
           <td mat-cell *matCellDef="let row">
             {{row.time.starting_at.time.split(":").slice(0, -1).join(":")}}
           </td>
@@ -44,8 +44,8 @@
           <th mat-header-cell *matHeaderCellDef>Comments</th>
 
           <td mat-cell *matCellDef="let row">
-            <button (click)="openCommentsModal(row.id, row.localteam_name, row.visitorteam_name, dataSource.date)" mat-mini-fab color="primary"  matTooltip="Open comments section"
-                    [attr.aria-label]="'Open comments section'">
+            <button (click)="openCommentsModal(row.id, row.localteam_name, row.visitorteam_name, dataSource.date)"
+                    mat-mini-fab color="primary"  title="Open comments section" aria-label="Comments">
               <mat-icon aria-hidden="true">comment</mat-icon>
             </button>
           </td>

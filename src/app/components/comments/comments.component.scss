@@ -58,3 +58,10 @@ h2 {color: white}
   max-height: 100vh;
 }
 
+.outline-black:focus {
+  outline: 1px dotted black;
+}
+
+.outline-white:focus {
+  outline: 1px dotted white;
+}

@@ -39,3 +39,7 @@ h2 {color: white}
 .mat-card-subtitle{
   color: map-get($mat-grey, 700);
 }
+
+.outline-black:focus {
+  outline: 1px dotted black;
+}

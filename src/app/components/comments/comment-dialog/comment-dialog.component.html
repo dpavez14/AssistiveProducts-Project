@@ -1,16 +1,19 @@
 <h1 mat-dialog-title>New comment</h1>
-<div mat-dialog-content fxLayout="column">
-  <mat-form-field fxFlex>
-    <input #name maxlength="50" placeholder="Name" matInput [(ngModel)]="data.name" cdkFocusInitial>
-    <mat-hint align="end">{{name.value.length}} / 50</mat-hint>
-  </mat-form-field>
-  <mat-form-field fxFlex>
-    <textarea #comment maxlength="1000" placeholder="Comment" matInput [(ngModel)]="data.comment" [formControl]="commentsControl" required></textarea>
-    <mat-hint *ngIf="commentsControl.valid || commentsControl.pristine" align="end">{{comment.value.length}} / 1000</mat-hint>
-    <mat-error *ngIf="commentsControl.invalid && !commentsControl.pristine">{{getCommentsErrorMessage()}}</mat-error>
-  </mat-form-field>
-</div>
-<div mat-dialog-actions fxLayoutAlign="end start">
-  <button aria-label="Cancel" mat-button (click)="onCancel()">CANCEL</button>
-  <button aria-label="Ok" [disabled]="commentsControl.invalid" mat-button (click)="announceComment()" [mat-dialog-close]="data">OK</button>
-</div>
+<form autocomplete="on">
+  <div mat-dialog-content fxLayout="column">
+    <mat-form-field fxFlex>
+      <input #name name="comment-name" autocomplete="name" maxlength="50" placeholder="Name" matInput [(ngModel)]="data.name" cdkFocusInitial>
+      <mat-hint align="end">{{name.value.length}} / 50</mat-hint>
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <textarea #comment autocomplete="off" maxlength="1000" placeholder="Comment" matInput [(ngModel)]="data.comment" [formControl]="commentsControl" required></textarea>
+      <mat-hint *ngIf="commentsControl.valid || commentsControl.untouched" align="end">{{comment.value.length}} / 1000</mat-hint>
+      <mat-error *ngIf="commentsControl.invalid && commentsControl.touched">{{getCommentsErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions fxLayoutAlign="end start">
+    <button class="outline-black" aria-label="Cancel" mat-button (click)="onCancel()">CANCEL</button>
+    <button type="submit" class="outline-black" aria-label="Add" [disabled]="commentsControl.invalid" mat-button (click)="announceComment()" [mat-dialog-close]="data">ADD</button>
+  </div>
+</form>
+
