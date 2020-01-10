@@ -4,8 +4,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ApiService } from '../../services/api.service';
 import { Team } from '../../models/team';
-import {MatDialog} from "@angular/material/dialog";
-import {TeamComponent} from "../team/team.component";
+import {MatDialog} from '@angular/material/dialog';
+import {TeamComponent} from '../team/team.component';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-positions',
@@ -21,7 +22,9 @@ export class PositionsComponent {
   constructor(
     private apiService: ApiService,
     public dialog: MatDialog,
+    titleService: Title,
   ) {
+    titleService.setTitle('Scottish Premiership - Standings');
     apiService.getStandings((standings: Standing[]) => {
       this.dataSources = standings;
     });

@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ApiService, MatchType } from 'src/app/services/api.service';
+import {Title} from "@angular/platform-browser";
 
 interface DataSource {
   date: string;
@@ -59,8 +60,11 @@ export class FixturesComponent {
   displayedColumns = ['time', 'match',  'location'];
   dataSources = [];
 
-  constructor(apiService: ApiService) {
-
+  constructor(
+    apiService: ApiService,
+    titleService: Title,
+  ) {
+    titleService.setTitle('Scottish Premiership - Fixtures');
     apiService.getMatches(MatchType.Fixtures, (items) => {
       this.dataSources = items;
     });

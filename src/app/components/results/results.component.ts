@@ -6,6 +6,7 @@ import { ApiService, MatchType } from '../../services/api.service';
 import { Result } from '../../models/results';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { CommentsComponent } from '../comments/comments.component';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-results',
@@ -21,8 +22,10 @@ export class ResultsComponent {
 
   constructor(
     private apiService: ApiService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    titleService: Title,
   ) {
+    titleService.setTitle('Scottish Premiership - Results');
     apiService.getMatches(MatchType.Results, (items) => {
       this.dataSources = items;
     });
