@@ -41,7 +41,7 @@ export class PositionsComponent {
     'points'
   ];
 
-  private openTeamModal(id: number) {
+  public openTeamModal(id: number) {
     const dialogRef = this.dialog.open(TeamComponent, {
       minWidth: '100vw',
       width: '100vw',

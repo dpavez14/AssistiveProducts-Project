@@ -61,7 +61,7 @@ export class ResultsComponent {
     return g.toString() + (g !== 1 ? ' goals' : ' goal');
   }
 
-  private openCommentsModal(id: number, localTeam: string, visitorTeam: string, date: string) {
+  public openCommentsModal(id: number, localTeam: string, visitorTeam: string, date: string) {
     this.dialogRef = this.dialog.open(CommentsComponent, {
       minWidth: '100vw',
       width: '100vw',
