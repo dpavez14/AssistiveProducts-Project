@@ -5,7 +5,7 @@
 }
 
 .grey-text {
-  color: map-get($mat-grey, 700)
+  color: map-get($mat-grey, 700);
 }
 
 h2 {color: white}
@@ -36,3 +36,6 @@ h2 {color: white}
   margin-bottom: 30px;
 }
 
+.mat-card-subtitle{
+  color: map-get($mat-grey, 700);
+}
