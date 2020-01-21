@@ -65,6 +65,7 @@
 
 <nav mat-tab-nav-bar mat-stretch-tabs color="accent" backgroundColor="primary" >
   <a mat-tab-link
+     [attr.aria-current]="rla.isActive"
      *ngFor="let link of navLinks"
      [routerLink]="link.path"
      routerLinkActive #rla="routerLinkActive"

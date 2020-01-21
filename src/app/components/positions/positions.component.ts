@@ -5,7 +5,7 @@ import { MatTable } from '@angular/material/table';
 import { ApiService } from '../../services/api.service';
 import { Team } from '../../models/team';
 import {MatDialog} from '@angular/material/dialog';
-import {TeamComponent} from '../team/team.component';
+import {TeamComponent, TeamSquad} from '../team/team.component';
 import {Title} from '@angular/platform-browser';
 
 @Component({
@@ -54,12 +54,17 @@ export class PositionsComponent implements AfterViewInit {
   }
 
   public openTeamModal(id: number) {
-    const dialogRef = this.dialog.open(TeamComponent, {
-      minWidth: '100vw',
-      width: '100vw',
-      minHeight: '100vh',
-      height: '100vh',
-      data: {id}
+    let squad: TeamSquad;
+    this.apiService.getTeam(id).subscribe(res => {
+      squad = res;
+      const dialogRef = this.dialog.open(TeamComponent, {
+        minWidth: '100vw',
+        width: '100vw',
+        minHeight: '100vh',
+        height: '100vh',
+        data: {id},
+        ariaLabel: squad.name + ' squad'
+      });
     });
   }
 }

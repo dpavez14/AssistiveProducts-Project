@@ -2,7 +2,7 @@
 <form autocomplete="on">
   <div mat-dialog-content fxLayout="column">
     <mat-form-field fxFlex>
-      <input #name name="comment-name" autocomplete="name" maxlength="50" placeholder="Name" matInput [(ngModel)]="data.name" cdkFocusInitial>
+      <input #name name="comment-name" autocomplete="name" maxlength="50" placeholder="Name" matInput [(ngModel)]="data.name">
       <mat-hint align="end">{{name.value.length}} / 50</mat-hint>
     </mat-form-field>
     <mat-form-field fxFlex>

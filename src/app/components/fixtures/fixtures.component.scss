@@ -56,17 +56,17 @@ h1, h2, h3, h4, h5, h6 {
   border-left: .5px solid white;
 }
 
-#localTeam {
+.localTeam {
   text-align: right;
   justify-content: flex-end;
 }
 
-#visitorTeam {
+.visitorTeam {
   text-align: left;
   justify-content: flex-start;
 }
 
-#localTeam, #visitorTeam {
+.localTeam, .visitorTeam {
   width: 270px;
   overflow: hidden;
   display: flex;

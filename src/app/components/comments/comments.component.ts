@@ -44,7 +44,8 @@ export class CommentsComponent implements OnInit {
       data: {
         name: '',
         comment: ''
-      }
+      },
+      ariaLabel: 'New comment'
     });
 
     dialogRef.afterClosed().subscribe((result: CommentData) => {

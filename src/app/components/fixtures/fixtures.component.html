@@ -17,14 +17,14 @@
           <th mat-header-cell *matHeaderCellDef>Match</th>
           <td mat-cell *matCellDef="let row">
             <div class="result">
-              <span id="localTeam">
+              <span class="localTeam">
                 <span aria-label="Local team">{{row.localteam_name}}</span>
                 <img aria-hidden="true" src="{{row.localteam_logo}}" alt="" width="30" height="30">
               </span>
               <span style="display:flex;margin: 0 10px 0 10px;">
                 vs
               </span>
-              <span id="visitorTeam">
+              <span class="visitorTeam">
                 <img aria-hidden="true" src="{{row.visitorteam_logo}}" alt="" width="30" height="30">
                 <span aria-label="Visitor team">{{row.visitorteam_name}}</span>
               </span>
@@ -43,7 +43,7 @@
       </table>
     </div>
   </div>
-  <h1 class="mat-h1">Other pages: </h1>
+  <h1 class="mat-h1">Other pages</h1>
   <ul style="color: white">
     <li><a style="color: white; text-decoration: underline; cursor: pointer;" routerLink="/results">Results</a></li>
     <li><a style="color: white; text-decoration: underline; cursor: pointer;" routerLink="/standings">Standings</a></li>

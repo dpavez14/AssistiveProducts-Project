@@ -3,3 +3,7 @@
 ::ng-deep .mat-header-cell {
   color: map-get($mat-grey, 800);
 }
+
+::ng-deep .mat-card-subtitle {
+  color: map-get($mat-grey, 700);
+}
