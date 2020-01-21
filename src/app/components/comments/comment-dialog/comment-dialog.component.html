@@ -2,12 +2,12 @@
 <form autocomplete="on">
   <div mat-dialog-content fxLayout="column">
     <mat-form-field fxFlex>
-      <input #name name="comment-name" autocomplete="name" maxlength="50" placeholder="Name" matInput [(ngModel)]="data.name">
-      <mat-hint align="end">{{name.value.length}} / 50</mat-hint>
+      <input name="comment-name" autocomplete="name" maxlength="50" placeholder="Name" matInput [(ngModel)]="data.name">
+      <mat-hint align="end">{{data.name.length}} / 50</mat-hint>
     </mat-form-field>
     <mat-form-field fxFlex>
-      <textarea #comment autocomplete="off" maxlength="1000" placeholder="Comment" matInput [(ngModel)]="data.comment" [formControl]="commentsControl" required></textarea>
-      <mat-hint *ngIf="commentsControl.valid || commentsControl.untouched" align="end">{{comment.value.length}} / 1000</mat-hint>
+      <textarea autocomplete="off" maxlength="1000" placeholder="Comment" matInput [(ngModel)]="data.comment" [formControl]="commentsControl" required></textarea>
+      <mat-hint *ngIf="commentsControl.valid || commentsControl.untouched" align="end">{{data.comment.length}} / 1000</mat-hint>
       <mat-error *ngIf="commentsControl.invalid && commentsControl.touched">{{getCommentsErrorMessage()}}</mat-error>
     </mat-form-field>
   </div>
